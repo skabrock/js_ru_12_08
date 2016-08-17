@@ -6,7 +6,6 @@ export default class Article extends Component {
 
     state = {
         isOpen: false,
-        isCommentsVisible: false
     }
 
     render() {
@@ -14,14 +13,8 @@ export default class Article extends Component {
         const body = this.state.isOpen
             ? <section>
                   {article.text}
-                  <br />
-                  <br />
-                  <button onClick = {this.toggleComents}>{this.state.isCommentsVisible ? 'hide comments' : 'show comments'}</button>
-                  {
-                      this.state.isCommentsVisible
-                          ? <CommentList comments = { article.comments } />
-                          : null
-                  }
+                  <hr />
+                  <CommentList comments = { article.comments } />
               </section>
             : null
         return (
@@ -35,12 +28,6 @@ export default class Article extends Component {
     handleClick = (ev) => {
         this.setState({
             isOpen: !this.state.isOpen
-        })
-    }
-
-    toggleComents = (e) => {
-        this.setState({
-          isCommentsVisible: !this.state.isCommentsVisible
         })
     }
 }
