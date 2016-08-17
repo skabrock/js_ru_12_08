@@ -4,7 +4,12 @@ export default function Comment(props) {
 
     return(
         <div>
-            <strong>{props.comment.user}</strong>
+            {
+                props.comment.title
+                    ? <span><strong>{props.comment.title}</strong> | </span>
+                    : null
+            }
+            <i>{props.comment.user}</i>
             <br />
             <p>{props.comment.text}</p>
         </div>
