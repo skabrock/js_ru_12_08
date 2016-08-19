@@ -3,7 +3,7 @@
 import React from 'react'
 
 export default (Component) => {
-    return class DecoratedComponent extends React.Component {
+    return class ToggleOpenComponent extends React.Component {
         state = {
             isOpen: false
         }
@@ -16,7 +16,6 @@ export default (Component) => {
         }
 
         render() {
-            console.log('---', 321)
             return <Component {...this.props} isOpen = {this.state.isOpen} toggleOpen = {this.toggleOpen}/>
         }
     }
