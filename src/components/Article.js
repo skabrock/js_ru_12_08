@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CommentList from './CommentList'
 
 export default class Article extends Component {
 /*
@@ -16,11 +17,11 @@ export default class Article extends Component {
     }
 
     render() {
-        const { article } = this.props
-        const body = this.state.isOpen ? <section>{article.text}</section> : null
+        const { article: { text, title, comments} } = this.props
+        const body = this.state.isOpen ? <section>{text}<CommentList comments = {comments}/></section> : null
         return (
             <div>
-                <h3 onClick = {this.handleClick}>{article.title}</h3>
+                <h3 onClick = {this.handleClick}>{title}</h3>
                 {body}
             </div>
         )
