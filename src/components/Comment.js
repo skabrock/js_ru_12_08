@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 function Comment(props) {
-    if (!this.props.comment) return null
+    if (!props.comment) return null
     const { comment: { user, text } } = props
     return (
         <p>
