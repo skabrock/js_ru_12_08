@@ -1,10 +1,13 @@
 import React, { Component, PropTypes, createClass } from 'react'
 import Comment from './Comment'
+import toggleOpen from '../mixins/toggleOpen'
 
 const CommentList = createClass({
+    mixins: [toggleOpen],
+
     getInitialState() {
         return {
-            isOpen: false
+            foo: 'bar'
         }
     },
 
@@ -24,14 +27,8 @@ const CommentList = createClass({
                 <ul>{commentItems}</ul>
             </div>
         )
-    },
-
-    toggleOpen(ev) {
-        ev.preventDefault()
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
     }
+
 })
 
 export default CommentList
