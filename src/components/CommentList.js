@@ -1,16 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
+import toggleOpen from '../decorators/toggleOpen'
 
 class CommentList extends Component {
-    state = {
-        isOpen: false
-    }
-
     render() {
-        const { comments } = this.props
-        const { isOpen } = this.state
+        const { comments, isOpen, toggleOpen } = this.props
+
         if (!comments || !comments.length) return <p>No comments yet</p>
-        const toggleButton = <a href="#" onClick = {this.toggleOpen}>{isOpen ? 'hide' : 'show'} comments</a>
+        const toggleButton = <a href="#" onClick = {toggleOpen}>{isOpen ? 'hide' : 'show'} comments</a>
 
         if (!isOpen) return <div>{toggleButton}</div>
 
@@ -23,13 +20,6 @@ class CommentList extends Component {
             </div>
         )
     }
-
-    toggleOpen = ev => {
-        ev.preventDefault()
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
 }
 
-export default CommentList
+export default toggleOpen(CommentList)
