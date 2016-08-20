@@ -1,16 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes, createClass } from 'react'
 import Article from './Article'
-import accordion from '../decorators/accordion'
+import accordion from '../mixins/accordion'
 
-class ArticleList extends Component {
+const ArticleList = createClass({
+
+    mixins: [accordion],
+
     render() {
-        const { articles, openId, toggleOpen } = this.props;
+        const { articles } = this.props;
+        const { openId } = this.state;
 
         const articleItems = articles.map(articleObject =>
             <li key = {articleObject.id}>
                 <Article article = {articleObject}
                     isOpen = {openId === articleObject.id}
-                    toggleOpen = {toggleOpen(articleObject.id)}
+                    toggleOpen = {this.toggleOpen(articleObject.id)}
                 />
             </li>)
         return (
@@ -19,6 +23,6 @@ class ArticleList extends Component {
             </ul>
         )
     }
-}
+})
 
-export default accordion(ArticleList)
+export default ArticleList

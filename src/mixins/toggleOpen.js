@@ -11,12 +11,4 @@ export default {
             isOpen: !this.state.isOpen
         })
     },
-
-    openItem(ev) {
-        if (ev) ev.preventDefault()
-        this.setState({
-            isOpen: true
-        })
-    }
-
 }
