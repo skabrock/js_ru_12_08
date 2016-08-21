@@ -5,6 +5,10 @@ import toggleOpen from '../mixins/toggleOpen'
 const CommentList = createClass({
     mixins: [toggleOpen],
 
+    propTypes: {
+        comments: PropTypes.array,
+    },
+
     render() {
         const { comments } = this.props
         const { isOpen } = this.state

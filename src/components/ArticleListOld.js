@@ -6,6 +6,12 @@ const ArticleList = createClass({
 
     mixins: [accordion],
 
+    propTypes: {
+        articles: PropTypes.array,
+        openId: PropTypes.number,
+        toggleOpen: PropTypes.func,
+    },
+
     render() {
         const { articles } = this.props;
         const { openId } = this.state;
