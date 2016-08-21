@@ -6,9 +6,9 @@ export default {
     },
 
     toggleOpen(id, ev) {
-        if (ev) ev.preventDefault()
         let self = this
         return function (ev) {
+            if (ev) ev.preventDefault()
             self.setState({
                 openId: ( id !== self.state.openId ) ? id : null
             })
