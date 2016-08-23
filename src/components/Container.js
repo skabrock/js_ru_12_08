@@ -8,6 +8,10 @@ class Container extends Component {
 
     };
 
+    state = {
+        selected: null
+    }
+
     render() {
         const options = this.props.articles.map(article => ({
             label: article.title,
@@ -15,10 +19,16 @@ class Container extends Component {
         }))
         return (
             <div>
-                <Select options = {options}/>
+                <Select options = {options} value={this.state.selected} onChange = {this.handleChange} multi={true}/>
                 <ArticleList articles = {this.props.articles} />
             </div>
         )
+    }
+
+    handleChange = (selected) => {
+        this.setState({
+            selected
+        })
     }
 }
 
