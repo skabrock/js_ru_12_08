@@ -18,7 +18,7 @@ export default (Component) => {
         isOpenItem = id => this.state.openItemId === id
 
         render() {
-            return <Component {...this.props} isOpenItem = {this.isOpenItem} toggleOpenItem = {this.toggleOpenItem}/>
+            return <Component {...this.props} isOpenItem = {this.isOpenItem} toggleOpenItem = {this.toggleOpenItem} {...this.state}/>
         }
     }
 }
