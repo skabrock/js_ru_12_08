@@ -1,8 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Article from './Article'
 import accordion from '../decorators/accordion'
 
 class ArticleList extends Component {
+    static propTypes = {
+        articles: PropTypes.array.isRequired,
+        //from accordion decorator
+        toggleOpenItem: PropTypes.func.isRequired,
+        isOpenItem: PropTypes.func.isRequired
+    }
+
     render() {
         const { articles, toggleOpenItem, isOpenItem } = this.props
         const articleItems = articles.map(articleObject =>
