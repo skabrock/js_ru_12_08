@@ -1,30 +1,16 @@
 import React, { Component, PropTypes } from 'react'
-import store from '../store'
 import { increment } from '../AC/counter'
+import { connect } from 'react-redux'
 
 class Counter extends Component {
     static propTypes = {
 
     };
 
-    state = {
-        count: store.getState().count
-    }
-
-    componentWillMount() {
-        store.subscribe(this.handleStoreChange)
-    }
-
-    handleStoreChange = () => {
-        this.setState({
-            count: store.getState().count
-        })
-    }
-
     render() {
         return (
             <div>
-                <h1>{this.state.count}</h1>
+                <h1>{this.props.count}</h1>
                 <a href = "#" onClick = {this.handleIncrement}>increment me</a>
             </div>
         )
@@ -32,9 +18,13 @@ class Counter extends Component {
 
     handleIncrement = ev => {
         ev.preventDefault()
-        const action = increment()
-        store.dispatch(action)
+        this.props.wrappedIncrement()
     }
 }
 
-export default Counter
+export default connect((state) => {
+    const { count } = state
+    return { count }
+}, {
+    wrappedIncrement: increment
+})(Counter)
