@@ -6,6 +6,7 @@ import JqueryComponent from './JqueryComponent'
 import DaypickerContainer from './DaypickerContainer'
 import Counter from './Counter'
 import { findDOMNode } from 'react-dom'
+import { connect } from 'react-redux'
 
 class Container extends Component {
     static propTypes = {
@@ -44,4 +45,8 @@ class Container extends Component {
     }
 }
 
-export default Container
+export default connect((state) => {
+    const { articles } = state
+    return { articles }
+}
+)(Container)

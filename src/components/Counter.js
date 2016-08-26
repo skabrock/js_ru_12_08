@@ -19,6 +19,7 @@ class Counter extends Component {
     handleIncrement = ev => {
         ev.preventDefault()
         this.props.wrappedIncrement()
+        //store.dispatch(increment())
     }
 }
 
