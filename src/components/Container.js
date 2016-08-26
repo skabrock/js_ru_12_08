@@ -4,6 +4,7 @@ import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import JqueryComponent from './JqueryComponent'
 import DaypickerContainer from './DaypickerContainer'
+import Counter from './Counter'
 import { findDOMNode } from 'react-dom'
 
 class Container extends Component {
@@ -22,6 +23,7 @@ class Container extends Component {
         }))
         return (
             <div>
+                <Counter />
                 <ArticleList articles = {this.props.articles} />
                 <Select options = {options} value={this.state.selected} onChange = {this.handleChange} multi={true}/>
                 <DaypickerContainer />
