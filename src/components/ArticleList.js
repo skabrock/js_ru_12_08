@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Article from './Article'
 import accordion from '../decorators/accordion'
 

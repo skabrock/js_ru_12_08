@@ -1,20 +1,24 @@
+//HOC - higher order component
+//decorator
 import React from 'react'
 
 export default (Component) => {
-    return class ToggleOpenComponent extends React.Component {
+    return class AccordionDecorator extends React.Component {
         state = {
-            openId: null
+            openItemId: null
         }
 
-        toggleOpen = id => ev => {
+        toggleOpenItem = id => ev => {
             if (ev) ev.preventDefault()
             this.setState({
-                openId: ( id !== this.state.openId ) ? id : null
+                openItemId: id == this.state.openItemId ? null : id
             })
         }
 
+        isOpenItem = id => this.state.openItemId === id
+
         render() {
-            return <Component {...this.props} openId = {this.state.openId} toggleOpen = {this.toggleOpen}/>
+            return <Component {...this.props} isOpenItem = {this.isOpenItem} toggleOpenItem = {this.toggleOpenItem} {...this.state}/>
         }
     }
 }
