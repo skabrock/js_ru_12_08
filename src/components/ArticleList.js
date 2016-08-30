@@ -3,21 +3,20 @@ import Article from './Article'
 import accordion from '../decorators/accordion'
 
 class ArticleList extends Component {
-
     static propTypes = {
-        articles: PropTypes.array,
-        openId: PropTypes.number,
-        toggleOpen: PropTypes.func,
+        articles: PropTypes.array.isRequired,
+        //from accordion decorator
+        toggleOpenItem: PropTypes.func.isRequired,
+        isOpenItem: PropTypes.func.isRequired
     }
 
     render() {
-        const { articles, openId, toggleOpen } = this.props;
-
+        const { articles, toggleOpenItem, isOpenItem } = this.props
         const articleItems = articles.map(articleObject =>
             <li key = {articleObject.id}>
                 <Article article = {articleObject}
-                    isOpen = {openId === articleObject.id}
-                    toggleOpen = {toggleOpen(articleObject.id)}
+                    isOpen = {isOpenItem(articleObject.id)}
+                    toggleOpen = {toggleOpenItem(articleObject.id)}
                 />
             </li>)
         return (

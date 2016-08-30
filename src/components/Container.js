@@ -18,17 +18,43 @@ class Container extends Component {
     }
 
     render() {
-        const options = this.props.articles.map(article => ({
+
+        const { filter, articles } = this.props;
+
+        const getTimestamp = (date, add = 0) => {
+          if (date) {
+            return new Date(date).getTime() + add;
+          } else {
+            return null;
+          }
+        }
+
+        const filtredArticles = articles.filter( article => {
+
+          const date = getTimestamp(article.date);
+          const from = getTimestamp(filter.from);
+          const to = getTimestamp(filter.to ? filter.to : filter.from, 1000*60*60*24); // set default end date as start date & addtional time to next day equals 24 hours
+
+          if (!from){
+            return article;
+          } else {
+            if (date >= from && date <= to) {
+              return article;
+            }
+          }
+        })
+
+        const options = articles.map(article => ({
             label: article.title,
             value: article.id
         }))
         return (
             <div>
                 <Counter />
-                <ArticleList articles = {this.props.articles} />
+                <ArticleList articles = {filtredArticles} />
                 <Select options = {options} value={this.state.selected} onChange = {this.handleChange} multi={true}/>
                 <DaypickerContainer />
-                <JqueryComponent items = {this.props.articles} ref={this.getJQ}/>
+                <JqueryComponent items = {articles} ref={this.getJQ}/>
             </div>
         )
     }
@@ -46,7 +72,7 @@ class Container extends Component {
 }
 
 export default connect((state) => {
-    const { articles } = state
-    return { articles }
+    const { articles, filter } = state
+    return { articles, filter}
 }
 )(Container)
